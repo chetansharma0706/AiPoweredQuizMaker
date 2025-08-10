@@ -1,9 +1,5 @@
 import {
   account,
-  client,
-  storage,
-  databases,
-  appwriteConfig,
 } from './client.ts';
 import { OAuthProvider, Query } from 'appwrite';
 import db from './databases';
