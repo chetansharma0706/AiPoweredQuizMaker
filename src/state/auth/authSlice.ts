@@ -25,38 +25,30 @@ const authSlice = createSlice({
   name: 'auth',
   initialState,
   reducers: {
-    setUser: (state: AuthState, action: PayloadAction<User | null>) => {
+    setUser: (state, action: PayloadAction<User | null>) => {
       state.user = action.payload;
     },
   },
   extraReducers: (builder) => {
     builder
-      .addCase(getCurrentUser.pending, (state: AuthState) => {
+      .addCase(getCurrentUser.pending, (state) => {
         state.status = 'loading';
       })
-      .addCase(
-        getCurrentUser.fulfilled,
-        (state: AuthState, action: PayloadAction<User | null>) => {
-          state.status = 'succeeded';
-          state.user = action.payload;
-        }
-      )
-      .addCase(
-        getCurrentUser.rejected,
-        (state: AuthState, action: PayloadAction<User | null>) => {
-          state.status = 'failed';
-          state.error = action.payload || 'Unknown error';
-          state.user = null;
-        }
-      )
-      .addCase(
-        logoutUser.fulfilled,
-        (state: AuthState) => {
-          state.status = 'idle';
-          state.user = null;
-        }
-      )
-  },
+      .addCase(getCurrentUser.fulfilled, (state, action) => {
+        state.status = 'succeeded';
+        state.user = action.payload;
+      })
+      .addCase(getCurrentUser.rejected, (state, action) => {
+        state.status = 'failed';
+        state.error = action.payload || 'Unknown error';
+        state.user = null;
+      })
+      .addCase(logoutUser.fulfilled, (state) => {
+        state.status = 'idle';
+        state.user = null;
+      });
+  }
+  
 });
 
 export const { setUser } = authSlice.actions;
