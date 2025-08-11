@@ -4,7 +4,7 @@ import image from '../assets/illustration.png';
 import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
-import { getCurrentUser, logoutUser } from '../appwrite/auth';
+import { getCurrentUser, logoutUser } from '../state/auth/authSlice';
 import type { AppDispatch, RootState } from '../state/store';
 
 export default function AuthPage() {
