@@ -1,6 +1,6 @@
 import { cn } from '@/lib/utils';
 import { Button } from '@/components/ui/button';
-import { loginWithGoogle } from '../appwrite/auth.ts';
+import { loginWithGoogle } from '../state/auth/authSlice';
 
 export function LoginForm({
   className,
